@@ -1,0 +1,234 @@
+{% load static %}
+<div class="product-container">
+
+      <div class="container">
+
+
+        <!--
+          - SIDEBAR
+        -->
+
+        <div class="sidebar  has-scrollbar" data-mobile-menu>
+
+          <div class="sidebar-category">
+
+            <div class="sidebar-top">
+              <h2 class="sidebar-title">Kategoriyalar</h2>
+
+              <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+
+            <ul class="sidebar-menu-category-list">
+
+              <li class="sidebar-menu-category">
+
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+
+                  <div class="menu-title-flex">
+                    <img src="{% static 'images/icons/dress.svg' %}" alt="clothes" width="20" height="20"
+                      class="menu-title-img">
+
+                    <p class="menu-title">Qadın geyimləri</p>
+                  </div>
+
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                  </div>
+
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/19/t-shirt-2/" class="sidebar-submenu-title">
+                      <p class="product-name">T-Shirt</p>
+                      <data value="300" class="stock" title="Available Stock">300</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/13/sort-v-cins-salvar/" class="sidebar-submenu-title">
+                      <p class="product-name">Şort və cins şalvar</p>
+                      <data value="60" class="stock" title="Available Stock">60</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/10/don/" class="sidebar-submenu-title">
+                      <p class="product-name">Don</p>
+                      <data value="50" class="stock" title="Available Stock">50</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/11/palto/" class="sidebar-submenu-title">
+                      <p class="product-name">Palto</p>
+                      <data value="87" class="stock" title="Available Stock">87</data>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="sidebar-menu-category">
+
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+
+                  <div class="menu-title-flex">
+                    <img src="{% static 'images/icons/shorts.svg' %}" alt="footwear" class="menu-title-img" width="20"
+                      height="20">
+
+                    <p class="menu-title">Kişi geyimləri</p>
+                  </div>
+
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                  </div>
+
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/15/t-shirt/" class="sidebar-submenu-title">
+                      <p class="product-name">T-Shirt</p>
+                      <data value="45" class="stock" title="Available Stock">45</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/18/koynk/" class="sidebar-submenu-title">
+                      <p class="product-name">Köynək</p>
+                      <data value="75" class="stock" title="Available Stock">75</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/17/penck/" class="sidebar-submenu-title">
+                      <p class="product-name">Pencək</p>
+                      <data value="35" class="stock" title="Available Stock">35</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/16/sort-v-cins-salvar-2/" class="sidebar-submenu-title">
+                      <p class="product-name">Şort və cins şalvar</p>
+                      <data value="26" class="stock" title="Available Stock">26</data>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+              <li class="sidebar-menu-category">
+
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+
+                  <div class="menu-title-flex">
+                    <img src="{% static 'images/comp.png' %}" alt="footwear" class="menu-title-img" width="20"
+                      height="20">
+
+                    <p class="menu-title">Elektronika</p>
+                  </div>
+
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                  </div>
+
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/4/dizustu/" class="sidebar-submenu-title">
+                      <p class="product-name">Dizüstü kompyuter</p>
+                      <data value="45" class="stock" title="Available Stock">45</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/2/masaustu/" class="sidebar-submenu-title">
+                      <p class="product-name">Masaüstü kompyuter</p>
+                      <data value="75" class="stock" title="Available Stock">75</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/8/kulaklk/" class="sidebar-submenu-title">
+                      <p class="product-name">Qulaqlıqlar</p>
+                      <data value="35" class="stock" title="Available Stock">35</data>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="http://127.0.0.1:8000/category/20/klaviatura-v-maus/" class="sidebar-submenu-title">
+                      <p class="product-name">Klaviatura və maus</p>
+                      <data value="26" class="stock" title="Available Stock">26</data>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+
+
+            </ul>
+
+          </div>
+
+          <div class="product-showcase">
+
+            <h3 class="showcase-heading">Ən çox satılanlar</h3>
+
+            <div class="showcase-wrapper">
+
+              <div class="showcase-container">
+                {% for best in bestseller %}
+                <div class="showcase">
+
+                  <a href="#" class="showcase-img-box">
+                    <img src="{{ best.image.url }}" alt="baby fabric shoes" width="90" height="70"
+                      class="showcase-img">
+                  </a>
+
+                  <div class="showcase-content">
+
+                    <a href="/product/{{ best.id }}/{{ best.slug }}">
+                      <h4 class="showcase-title">{{ best.title }}</h4>
+                    </a>
+
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                    <div class="price-box">
+                      <del>${{ best.price }}</del>
+                      <p class="price">${{ best.price }}</p>
+                    </div>
+
+                  </div>
+
+                </div>
+                {% endfor %}
+
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+

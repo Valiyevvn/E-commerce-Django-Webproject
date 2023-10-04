@@ -1,0 +1,437 @@
+{% load static %}
+{% block head %}
+<link rel="shortcut icon" href="{{ setting.icon.url }}" type="image/x-icon">
+{% endblock %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+</head>
+<style>
+@media (max-width: 991px) {
+    .h-custom {
+        height: 130vh !important;
+    }
+}
+</style>
+<body>
+<header>
+
+    <div class="header-top">
+
+        <div class="container">
+
+            <ul class="header-social-container">
+
+                <li>
+                    <a class="social-link" href="https://www.facebook.com/{{ setting.facebook }}">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.twitter.com/{{ setting.twitter}}">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.instagram.com/{{ setting.instagram }}">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.linkedin.com/{{ setting.linkedin }}">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="header-alert-news">
+                <p>
+                    <b>{{ setting.keywords }}</b>
+
+                </p>
+            </div>
+
+            <div class="header-top-actions">
+
+
+                <select name="currency">
+
+                    <option value="usd">AZN ₼</option>
+
+                </select>
+
+                <select name="language">
+
+                    <option value="en-US">Azərbaycanca</option>
+                    <option value="es-ES">Rusca</option>
+
+
+                </select>
+                {% if user.id %}
+                <a href="/logout/" class="action-btn">
+                    <ion-icon class="actiongizle" name="log-out-outline"size="large" style="color: black"></ion-icon>
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="header-main">
+
+        <div class="container">
+
+            <a class="header-logo" href="http://127.0.0.1:8000/">
+                <img alt="Anon's logo"  style="height: 60px" src="{{ setting.logo.url }}" >
+            </a>
+
+
+
+            <form class="header-search-container" action="/search/" method="post">
+                {% csrf_token %}
+
+                <input id="query" class="search-field" name="query" placeholder="Axtardığınız məhsulu daxil edin..." type="search" autocomplete="off">
+
+                <button class="search-btn">
+                    <ion-icon name="search-outline"></ion-icon>
+                </button>
+
+            </form>
+            {% if user.id is not None %}
+            <div class="header-user-actions">
+
+
+
+
+                <button class="action-btn">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <span class="count">0</span>
+                </button>
+
+                <a href="http://127.0.0.1:8000/shopcart" class="action-btn">
+                    <ion-icon name="bag-handle-outline"></ion-icon>
+                    <span class="count">{{ request.session.cart_items }}</span>
+                </a>
+
+
+            </div>
+            {% else %}
+             <a href="/login/" class="action-btn">
+                 <ion-icon class="actiongizle" name="log-in-outline" size="large" style="color:  black"></ion-icon>
+             </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <div class="mobile-bottom-navigation">
+
+        <a href="http://127.0.0.1:8000/" class="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+        </a>
+
+        <a href="/logout/" class="action-btn">
+            <ion-icon  name="log-in-outline" size="large" ></ion-icon>
+        </a>
+
+
+
+
+    </div>
+
+     <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+
+      <div class="menu-top">
+        <h2 class="menu-title">Menu</h2>
+
+        <button class="menu-close-btn" data-mobile-menu-close-btn>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="mobile-menu-category-list">
+
+        <li class="menu-category">
+          <a href="{% url 'anasayfa' %}" class="menu-title">Home</a>
+        </li>
+        {% load mptt_tags %}
+        {% recursetree category %}
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">{{ node.title }}</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+          <ul class="submenu-category-list" data-accordion>
+            <li class="submenu-category">
+              <a href="/category/{{ node.id }}/{{node.slug}}" class="submenu-title">{{ children }}</a>
+            </li>
+          </ul>
+
+
+        </li>
+        {% endrecursetree %}
+
+
+
+
+
+
+      </ul>
+
+      <div class="menu-bottom">
+
+        <ul class="menu-category-list">
+
+          <li class="menu-category">
+
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Dillər</p>
+
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">English</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Fren&ccedil;h</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="menu-category">
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Valyutalar</p>
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">AZN ₼</a>
+              </li>
+
+
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul class="menu-social-container">
+
+          <li>
+            <a href="https://www.facebook.com/{{ setting.facebook }}" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.twitter.com/{{ setting.twitter}}" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.instagram.com/{{ setting.instagram }}" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.linkedin.com/{{ setting.linkedin }}" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+</header>
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-{{message.tags}}" data-mdb-color="{{message.tags}}" role="alert">
+        <i class="fas fa-{{message.tags}}-circle me-3"></i>
+        <span class="closebtn"
+              onclick="this.parentElement.style.display='none';"
+              style="margin-left: 60px;color: black;float: right;font-size: 35px;line-height: 20px;cursor: pointer;transition: 0.3s;}">&times;</span>
+        {{ message }}
+
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    </div>
+<div class="container mt-5 ">
+    <table class="table border ">
+        <tr>
+            <th>İsim, Soyisim</th>
+            <td>{{order.user.first_name}} {{order.user.last_name}}</td>
+        </tr>
+        <tr>
+            <th>Telefon numarası</th>
+            <td>{{order.phone}}</td>
+        </tr>
+        <tr>
+            <th>Adres</th>
+            <td>{{order.address}}</td>
+        </tr>
+        <tr>
+            <th>Şəhər</th>
+            <td>{{order.city}}</td>
+        </tr>
+        <tr>
+            <th>Ölkə</th>
+            <td>{{ order.country }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ order.status }}</td>
+        </tr>
+        <tr>
+            <th>Tarix</th>
+            <td>{{ order.create_at }}</td>
+        </tr>
+
+
+
+
+    </table>
+</div>
+<div class="container mt-5 h-custom mb-5">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-lg-10 col-xl-12">
+            <div class="card" style="border-radius: 10px;">
+                <div class="card-header px-4 py-5">
+                    <h5 class="text-muted mb-0">Sifariş detalları </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <p class="small text-muted mb-0">Sifariş kodu : {{order.code}}</p>
+                    </div>
+                    {% for rs in orderitems %}
+                    <div class="card shadow-0 border mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <a class="col-md-2" href="/product/{{ rs.product_id }}/{{  rs.product.slug }}">
+                                    <img alt="Phone"
+                                         class="img-fluid" src="{{rs.product.image.url}}">
+                                </a>
+                                <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <a class="text-muted mb-0"
+                                       href="/product/{{ rs.product_id }}/{{  rs.product.slug }}" style="text-decoration: none">{{rs.product.title}}</a>
+                                </div>
+                                <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0 ">{{rs.price}} ₼</p>
+                                </div>
+                                <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0 ">{{rs.quantity}}</p>
+                                </div>
+                                <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0">{{rs.amount}} ₼</p>
+                                </div>
+                                <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0 ">{{rs.create_at}}</p>
+                                </div>
+                            </div>
+                            <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-2">
+                                    <p class="text-muted mb-0 small">Sifarişə baxılır</p>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="progress" style="height: 6px; border-radius: 16px;">
+                                        <div aria-valuemax="100" aria-valuemin="0"
+                                             aria-valuenow="50"
+                                             class="progress-bar"
+                                             role="progressbar" style="width: 50%; border-radius: 16px; background-color: #a8729a;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-around mb-1">
+                                        <p class="text-muted mt-1 mb-0 small ms-xl-5">Sifariş yoldadir</p>
+                                        <p class="text-muted mt-1 mb-0 small ms-xl-5">Sifariş catdırıldı</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+<footer>
+
+    <div class="footer-bottom">
+
+      <div class="container">
+
+        <img src="{% static 'images/payment.png'%}" alt="payment method" class="payment-img">
+
+        <p class="copyright">
+          Copyright &copy; <a href="#">{{setting.company}} |</a> Bütün hüquqlar qorunur.
+        </p>
+
+      </div>
+
+    </div>
+  </footer>
+
+</html>
+
+{% endblock %}

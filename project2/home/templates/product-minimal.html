@@ -1,0 +1,146 @@
+<div class="product-box">
+
+          <!--
+            - PRODUCT MINIMAL
+          -->
+
+          <div class="product-minimal">
+
+            <div class="product-showcase">
+
+              <h2 class="title">Yeni Ürünler</h2>
+
+              <div class="showcase-wrapper has-scrollbar">
+
+                <div class="showcase-container">
+
+                  {% for last in lastproduct %}
+
+
+
+                  <div class="showcase">
+
+                    <a href="#" class="showcase-img-box">
+                      <img src="{{ last.image.url }}" alt="relaxed short full sleeve t-shirt" width="70" class="showcase-img">
+                    </a>
+
+                    <div class="showcase-content">
+
+                      <a href="/product/{{ last.id }}/{{ last.slug }}">
+                        <h4 class="showcase-title">{{ last.title }}</h4>
+                      </a>
+
+                      <a href="/category/{{ last.category.id }}/{{last.category.slug}}" class="showcase-category">{{ last.category }}</a>
+
+                      <div class="price-box">
+                        <p class="price">${{last.price}}</p>
+                        <del>${{last.price}}</del>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  {% endfor %}
+
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+            <div class="product-showcase">
+
+              <h2 class="title">Trendler</h2>
+
+              <div class="showcase-wrapper  has-scrollbar">
+
+                <div class="showcase-container">
+                  {% for trend in trendproduct %}
+
+                  <div class="showcase">
+
+                    <a href="#" class="showcase-img-box">
+                      <img src="{{ trend.image.url }}" alt="running & trekking shoes - white" class="showcase-img"
+                        width="70">
+                    </a>
+
+                    <div class="showcase-content">
+
+                      <a href="/product/{{ trend.id }}/{{ trend.slug }}">
+                        <h4 class="showcase-title">{{ trend.title }}</h4>
+                      </a>
+
+                      <a href="/category/{{ trend.category.id }}/{{trend.category.slug}}" class="showcase-category">{{ trend.category }}</a>
+
+                      <div class="price-box">
+                        <p class="price">${{ trend.price }}</p>
+                        <del>${{ trend.price }}</del>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  {% endfor %}
+
+
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+            <div class="product-showcase">
+
+              <h2 class="title">Sevilen Urunler</h2>
+
+              <div class="showcase-wrapper  has-scrollbar">
+
+                <div class="showcase-container">
+                  {% for top in toprated %}
+
+                  <div class="showcase">
+
+                    <a href="#" class="showcase-img-box">
+                      <img src="{{ top.image.url }}" alt="pocket watch leather pouch" class="showcase-img"
+                        width="70">
+                    </a>
+
+                    <div class="showcase-content">
+
+                      <a href="/product/{{ top.id }}/{{ top.slug }}">
+                        <h4 class="showcase-title">{{ top.title }}</h4>
+                      </a>
+
+                      <a href="/category/{{ top.category.id }}/{{top.category.slug}}" class="showcase-category">{{ top.category }}</a>
+
+                      <div class="price-box">
+                        <p class="price">${{ top.price }}</p>
+                        <del>${{ top.price }}</del>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  {% endfor %}
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+

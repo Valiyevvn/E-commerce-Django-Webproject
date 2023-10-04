@@ -1,0 +1,351 @@
+{% load static %}
+<style>
+@media screen and (max-width: 1024px) {
+    .actiongizle{
+        display: none;
+    }
+}
+.success{
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
+.error{
+  background: rgb(217, 83, 79);
+}
+
+</style>
+<header>
+
+    <div class="header-top">
+        <div class="container" style="justify-content: center">
+        {% if messages %}
+        {% for message in messages %}
+        <div %} %} class="{{ message.tags }} showcase-title "  endif if message.tags
+             style="padding: 15px;margin-top: 30px;margin-bottom: 30px;color: black;border-radius: 10px"  {%
+             {%>
+
+            <span class="closebtn"
+                  onclick="this.parentElement.style.display='none';"
+                  style="margin-left: 60px;color: black;float: right;font-size: 35px;line-height: 27px;cursor: pointer;transition: 0.3s;}">&times;</span>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+        <div class="container">
+
+
+            <ul class="header-social-container">
+
+                <li>
+                    <a class="social-link" href="https://www.facebook.com/{{ setting.facebook }}">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.twitter.com/{{ setting.twitter}}">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.instagram.com/{{ setting.instagram }}">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="social-link" href="https://www.linkedin.com/{{ setting.linkedin }}">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="header-alert-news">
+                <p>
+                    <b>{{ setting.keywords }}</b>
+
+                </p>
+            </div>
+
+            <div class="header-top-actions">
+
+
+                <select name="currency">
+
+                    <option value="usd">AZN ₼</option>
+
+                </select>
+
+                <select name="language">
+
+                    <option value="en-US">Azərbaycanca</option>
+                    <option value="es-ES">Rusca</option>
+
+
+                </select>
+                {% if user.id %}
+                <a href="/logout/" class="action-btn">
+                    <ion-icon class="actiongizle" name="log-out-outline"size="large" style="color: black"></ion-icon>
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="header-main">
+
+        <div class="container">
+
+            <a class="header-logo" href="http://127.0.0.1:8000/">
+                <img alt="Anon's logo" style="height: 60px" src="{{ setting.logo.url }}" >
+            </a>
+
+
+
+            <form class="header-search-container" action="/search/" method="post">
+                {% csrf_token %}
+
+                <input id="query" class="search-field" name="query" placeholder="Axtardığınız məhsulu daxil edin..." type="search" autocomplete="off">
+
+                <button class="search-btn">
+                    <ion-icon name="search-outline"></ion-icon>
+                </button>
+
+            </form>
+            {% if user.id is not None %}
+            <div class="header-user-actions">
+
+                <a href="/user" class="action-btn">
+                    <ion-icon name="person-outline"></ion-icon>
+
+                </a>
+                
+
+
+
+                <a href="/shopcart" class="action-btn">
+                    <ion-icon name="bag-handle-outline"></ion-icon>
+                    <span class="count">{{ request.session.cart_items }}</span>
+                </a>
+
+
+            </div>
+            {% else %}
+             <a href="/login/" class="action-btn">
+                 <ion-icon class="actiongizle" name="log-in-outline" size="large" style="color:  black"></ion-icon>
+             </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <nav class="desktop-navigation-menu">
+
+      <div class="container">
+
+        <ul class="desktop-menu-category-list">
+
+         {% load mptt_tags %}
+          {% recursetree category %}
+            <li class="menu-category">
+            <a href="/category/{{ node.id }}/{{node.slug}}" class="menu-title">{{ node.title }}</a>
+            {% if not node.is_leaf_node %}
+            <ul  class="dropdown-list" style="margin-left: 10px;margin-right:10px;padding-left: 10px;">
+                <li><a href="/category/{{ node.id }}/{{node.slug}}"></a>{{ children }}</a></li>
+            </ul>
+            {% endif %}
+            </li>
+          {% endrecursetree %}
+
+
+
+
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+
+    <div class="mobile-bottom-navigation">
+        {% if user.id is not None %}
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="http://127.0.0.1:8000/shopcart" class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+
+            <span class="count">{{ request.session.cart_items }}</span>
+        </a>
+
+        <a href="http://127.0.0.1:8000/" class="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+        </a>
+
+        <a href="/user" class="action-btn">
+                    <ion-icon name="person-outline"></ion-icon>
+        </a>
+
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="grid-outline"></ion-icon>
+        </button>
+        {% else %}
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+        <a href="{% url 'anasayfa' %}" class="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <a href="/login/" class="action-btn">
+            <ion-icon  name="log-in-outline" size="large" ></ion-icon>
+        </a>
+        {% endif %}
+
+
+
+    </div>
+
+     <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+
+      <div class="menu-top">
+        <h2 class="menu-title">Menu</h2>
+
+        <button class="menu-close-btn" data-mobile-menu-close-btn>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="mobile-menu-category-list">
+
+        <li class="menu-category">
+            <br><a href="http://127.0.0.1:8000/" class="menu-title">Home</a>
+        </li>
+        {% load mptt_tags %}
+        {% recursetree category %}
+        <li class="menu-category">
+              <button class="accordion-menu" data-accordion-btn>
+              <br><a href="/category/{{ node.id }}/{{node.slug}}" class="menu-title">{{ node.title }}</a>
+                  <hr>
+
+                <div>
+                      <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                     <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                </div>
+              </button>
+
+
+        <ul class="submenu-category-list" >
+
+        </li>
+            <li class="submenu-category">
+               <a href="/category/{{ node.id }}/{{node.slug}}" data-accordion >{{ children }}</a>
+            </li>
+        </ul>
+
+
+        {% endrecursetree %}
+
+
+
+
+
+
+      </ul>
+
+      <div class="menu-bottom">
+
+        <ul class="menu-category-list">
+
+          <li class="menu-category">
+
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Dillər</p>
+
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">English</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Fren&ccedil;h</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="menu-category">
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Valyutalar</p>
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">AZN ₼</a>
+              </li>
+
+
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul class="menu-social-container">
+
+          <li>
+            <a href="https://www.facebook.com/{{ setting.facebook }}" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.twitter.com/{{ setting.twitter}}" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.instagram.com/{{ setting.instagram }}" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.linkedin.com/{{ setting.linkedin }}" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+</header>
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+
+          <div class="product-featured">
+
+            <h2 class="title">Günün məhsulları</h2>
+
+            <div class="showcase-wrapper has-scrollbar">
+            {% for deal in dealofday %}
+
+              <div class="showcase-container">
+
+                <div class="showcase">
+
+                  <div class="showcase-banner">
+                    <img src="{{ deal.image.url }}" alt="shampoo, conditioner & facewash packs" class="showcase-img">
+                  </div>
+
+                  <div class="showcase-content">
+
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+
+                    <a href="/product/{{ deal.id }}/{{ deal.slug }}">
+                      <h3 class="showcase-title">{{ deal.title }}</h3>
+                    </a>
+
+                    <p class="showcase-desc">
+                      {{ deal.description }}
+                    </p>
+
+                    <div class="price-box">
+                      <p class="price">₼{{ deal.price }}</p>
+
+                      <del>₼{{ deal.price }}</del>
+                    </div>
+
+                    <button class="add-cart-btn"><a href="/order/addtocart/{{ deal.id }}" style="color: white">Səbətə əlavə et</a></button>
+
+                    <div class="showcase-status">
+                      <div class="wrapper">
+                        <p>
+                          Satıldı: <b>{{ deal.amount }}</b>
+                        </p>
+
+                        <p>
+                          Qalan: <b>{{ deal.amount }}</b>
+                        </p>
+                      </div>
+
+                      <div class="showcase-status-bar"></div>
+
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            {% endfor %}
+
+
+
+            </div>
+
+          </div>
+

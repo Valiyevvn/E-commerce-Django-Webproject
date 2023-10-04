@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ setting.title }} {% endblock %}
+{% block img %}{{ setting.logo.url }}{% endblock %}
+{% block head %}
+<link rel="shortcut icon" href="{{ setting.icon.url }}" type="image/x-icon">
+{% endblock %}
+{% block keywords %}
+{{ setting.keywords }}
+{% endblock %}
+
+{% block content %}
+
+
+<main>
+
+
+
+
+
+
+  <!--
+    - MAIN
+  -->
+
+{% include 'banner.html' %}
+    <!--
+      - CATEGORY
+    -->
+
+{% include 'category.html' %}
+    <!--
+      - PRODUCT
+    -->
+{% include 'sidebar.html' %}
+
+{% include 'product-minimal.html' %}
+          <!--
+            - PRODUCT FEATURED
+          -->
+{% include 'product-featured.html' %}
+
+          <!--
+            - PRODUCT GRID
+          -->
+
+{% include 'product-grid.html' %}
+    <!--
+      - TESTIMONIALS, CTA & SERVICE
+    -->
+
+{% include 'testimonials.html'%}
+
+    <!--
+      - BLOG
+    -->
+
+
+  <!--
+    - FOOTER
+  -->
+
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="{% static 'js/script.js' %}"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</main>
+{% endblock %}

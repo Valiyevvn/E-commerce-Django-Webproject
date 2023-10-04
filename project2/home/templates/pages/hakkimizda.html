@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="shortcut icon" href="{{ setting.icon.url }}" type="image/x-icon">
+{% endblock %}
+{% block title %} Haqqımızda {% endblock %}
+{% block content %}
+<div class="container ">
+{{ setting.aboutus|safe }}
+</div>
+
+{% endblock %}

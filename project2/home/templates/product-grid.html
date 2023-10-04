@@ -1,0 +1,77 @@
+ <div class="product-main">
+
+            <h2 class="title">Yeni məhsullar</h2>
+
+            <div class="product-grid">
+              {% for grid in productgrid %}
+              <div class="showcase">
+
+                <div class="showcase-banner">
+
+                  <img src="{{ grid.image.url }}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+                  <img src="{{ grid.image.url }}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+
+                  <p class="showcase-badge">15%</p>
+
+                  <div class="showcase-actions">
+
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+
+                    <a class="btn-action" href="/product/{{ grid.id }}/{{ grid.slug }}">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </a>
+
+                    <button class="btn-action">
+                      <ion-icon name="repeat-outline"></ion-icon>
+                    </button>
+
+                    <a class="btn-action" href="order/addtocart/{{ grid.id }}">
+                      <ion-icon name="bag-add-outline"></ion-icon>
+                    </a>
+
+                  </div>
+
+                </div>
+
+                <div class="showcase-content">
+
+                  <a href="/category/{{ grid.category.id }}/{{grid.category.slug}}" class="showcase-category">{{ grid.category }}</a>
+
+                  <a href="/product/{{ grid.id }}/{{ grid.slug }}">
+                    <h3 class="showcase-title">{{ grid.title }}</h3>
+                  </a>
+
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+
+                  <div class="price-box">
+                    <p class="price">${{ grid.price }}</p>
+                    <del>${{ grid.price }}</del>
+                  </div>
+
+                </div>
+
+              </div>
+              {% endfor %}
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+

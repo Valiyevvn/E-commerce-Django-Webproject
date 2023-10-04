@@ -1,0 +1,669 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="shortcut icon" href="{{ setting.icon.url }}" type="image/x-icon">
+{% endblock %}
+{% load static %}
+{% block title %}{{ product.title }}{% endblock %}
+{% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    line-height: 1.5;
+}
+.card-wrapper{
+
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+img{
+
+    display: block;
+}
+.img-display{
+    overflow: hidden;
+}
+.img-showcase{
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+.img-showcase img{
+    min-width: 100%;
+}
+.img-select{
+    display: flex;
+}
+.img-item{
+    margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3){
+    margin-right: 0;
+}
+.img-item:hover{
+    opacity: 0.8;
+}
+.product-content{
+    padding: 2rem 1rem;
+}
+.product-title{
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+.product-title::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 80px;
+    background: #12263a;
+}
+.product-link{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    background: #256eff;
+    color: #fff;
+    padding: 0 0.3rem;
+    transition: all 0.5s ease;
+}
+.product-link:hover{
+    opacity: 0.9;
+}
+.product-rating{
+    color: #ffc107;
+}
+.product-rating span{
+    font-weight: 600;
+    color: #252525;
+}
+.product-price{
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.product-price span{
+    font-weight: 400;
+}
+.last-price span{
+    color: #f64749;
+    text-decoration: line-through;
+}
+.new-price span{
+    color: #256eff;
+}
+.product-detail h2{
+    text-transform: capitalize;
+    color: #12263a;
+    padding-bottom: 0.6rem;
+}
+.product-detail p{
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    opacity: 0.8;
+}
+.product-detail ul{
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+.product-detail ul li{
+    margin: 0;
+    list-style: none;
+    background:  left center no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+.product-detail ul li span{
+    font-weight: 400;
+}
+.purchase-info{
+    margin: 1.5rem 0;
+}
+.purchase-info input,
+.purchase-info .btn{
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.45rem 0.8rem;
+    outline: 0;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
+.purchase-info input{
+    width: 60px;
+}
+.purchase-info .btn{
+    cursor: pointer;
+    color: #fff;
+}
+.purchase-info .btn:first-of-type{
+    background: #256eff;
+}
+.purchase-info .btn:last-of-type{
+    background: #f64749;
+}
+.purchase-info .btn:hover{
+    opacity: 0.9;
+}
+.social-links{
+    display: flex;
+    align-items: center;
+}
+.social-links a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #000;
+    border: 1px solid #000;
+    margin: 0 0.2rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.5s ease;
+}
+.social-links a:hover{
+    background: #000;
+    border-color: transparent;
+    color: #fff;
+}
+
+@media screen and (min-width: 992px){
+    .card{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+    .card-wrapper{
+        height: 110vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .product-imgs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .product-content{
+        padding-top: 0;
+    }
+}
+.wrapper {
+	background: var(--white);
+	padding: 2rem;
+	max-width: 576px;
+	width: 100%;
+	border-radius: .75rem;
+	box-shadow: var(--shadow);
+	text-align: center;
+}
+.wrapper h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+.rating {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: .5rem;
+	font-size: 2rem;
+	color: var(--yellow);
+	margin-bottom: 2rem;
+}
+.rating .star {
+	cursor: pointer;
+}
+.rating .star.active {
+	opacity: 0;
+	animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
+}
+
+@keyframes animate {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+
+.rating .star:hover {
+	transform: scale(1.1);
+}
+textarea {
+	width: 100%;
+	background: var(--light);
+	padding: 1rem;
+	border-radius: .5rem;
+	border: none;
+	outline: none;
+	resize: none;
+	margin-bottom: .5rem;
+}
+.btn-group {
+	display: flex;
+	grid-gap: .5rem;
+	align-items: center;
+}
+.btn-group .btn {
+	padding: .75rem 1rem;
+	border-radius: .5rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: .875rem;
+	font-weight: 500;
+}
+.btn-group .btn.submit {
+	background: var(--blue);
+	color: var(--white);
+}
+.btn-group .btn.submit:hover {
+	background: var(--blue);
+}
+.btn-group .btn.cancel {
+	background: var(--white);
+	color: var(--blue);
+}
+.btn-group .btn.cancel:hover {
+	background: var(--light);
+}
+
+.success{
+  background: rgb(25, 135, 84);
+}
+.error{
+  background: rgb(217, 83, 79);
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.comment-date {
+  color: #777;
+  margin-left: auto;
+}
+
+.stars {
+  color: rgb(255,165,52);
+}
+
+
+
+</style>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+
+  </head>
+  <body>
+
+    <div class="card-wrapper" >
+      <div class="card" >
+        <!-- card left -->
+        <div class="product-imgs">
+          <div class="img-display">
+            <div class="img-showcase">
+              <img alt="shoe image" src="{{ product.image.url }}" style="width: 100%;">
+              {% for image in images %}
+              <img alt="shoe image" src="{{ image.image.url }}" style="width: 100%;">
+              {% endfor %}
+            </div>
+          </div>
+          <div class="img-select">
+            <div class="img-item">
+              <a data-id="1" href="#">
+
+                <img alt="shoe image" src="{{ product.image.url }}" style="height: 110px;width: 140px;margin-top: 15px">
+              </a>
+            </div>
+            {% for image in images %}
+            <div class="img-item">
+              <a data-id="2" href="#">
+                <img alt="shoe image" src="{{ image.image.url }}" style="height: 110px;width: 140px;margin-top: 15px">
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- card right -->
+        <div class="product-content">
+          <h2 class="product-title">{{ product.title }}</h2>
+          <a class="product-link" href="/category/{{product.category.id}}/{{product.category.slug}}">{{product.category}}</a>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>4.7(21)</span>
+          </div>
+
+          <div class="product-price">
+            <p class="last-price">Köhnə qiymət: <span>${{product.price}}</span></p>
+            <p class="new-price">Endirimli qiymət: <span>${{product.price}}</span></p>
+          </div>
+
+          <div class="product-detail">
+            <h2>Məhsul haqqında: </h2>
+            <p>{{ product.keywords }}</p>
+            <p>{{ product.description }}</p>
+            <ul>
+              {{ product.detail|safe }}
+            </ul>
+          </div>
+
+          <div class="purchase-info">
+            <form action="/order/addtocart/{{product.id}}" method="post">
+              {% csrf_token %}
+              <input name="quantity"  min="0" max="{{ product.amount }}"  type="number" value="1">
+              <button class="btn" type="submit">
+                <i class="fas fa-shopping-cart"></i> Sepete ekle
+              </button>
+            </form>
+            <button class="btn" type="button">Karşılaştır</button>
+          </div>
+
+          <div class="social-links">
+            <p>Paylaş: </p>
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-main container ">
+
+            <h2 class="title">Benzer ürünler</h2>
+
+            <div class="product-grid">
+              {% for product in products %}
+              <div class="showcase">
+
+                <div class="showcase-banner">
+
+                  <img src="{{ product.image.url }}" alt="Mens Winter Leathers Jackets" width="300" height="300" class="product-img default">
+                  <img src="{{ product.image.url }}" alt="Mens Winter Leathers Jackets" width="300" height="300" class="product-img hover">
+
+                  <p class="showcase-badge">15%</p>
+
+                  <div class="showcase-actions">
+
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+
+                    <a class="btn-action" href="/product/{{ product.id }}/{{ product.slug }}">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </a>
+
+                    <button class="btn-action">
+                      <ion-icon name="repeat-outline"></ion-icon>
+                    </button>
+
+                    <a class="btn-action" href="/addtocart/{{ product.id }}">
+                      <ion-icon name="bag-add-outline"></ion-icon>
+                    </a>
+
+                  </div>
+
+                </div>
+
+                <div class="showcase-content">
+
+                  <a href="#" class="showcase-category">{{ product.category }}</a>
+
+                  <a href="/product/{{ product.id }}/{{ product.slug }}">
+                    <h3 class="showcase-title">{{ product.title }}</h3>
+                  </a>
+
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+
+                  <div class="price-box">
+                    <p class="price">{{ product.price }}</p>
+                    <del>{{ product.price }}</del>
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
+              {% endfor %}
+
+            </div>
+
+          </div>
+    <div class="container"style="margin-top: 70px">
+      <div class="wrapper">
+        {% if messages %}
+        {% for message in messages %}
+        <div %} %} class="{{ message.tags }} " endif if message.tags style="padding: 10px;margin-top: 15px;margin-bottom: 15px;color: white;border-radius: 15px" {%
+             {%>
+          <span class="closebtn"
+                onclick="this.parentElement.style.display='none';"
+                style="margin-left: 15px;color: white;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;}">&times;</span>
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <h3>Yorum yap</h3>
+        <form action="/product/addcomment/{{ product.id }}" method="post">
+          {% csrf_token %}
+          <div class="rating">
+            <input max="5" name="rate" required style="display: none" type="number">
+            <i class='bx bx-star star' style="--i: 0;color: rgb(255,165,52)"></i>
+            <i class='bx bx-star star' style="--i: 1;color: rgb(255,165,52)"></i>
+            <i class='bx bx-star star' style="--i: 2;color: rgb(255,165,52)"></i>
+            <i class='bx bx-star star' style="--i: 3;color: rgb(255,165,52)"></i>
+            <i class='bx bx-star star' style="--i: 4;color: rgb(255,165,52)"></i>
+          </div>
+          <input name="subject" placeholder="subject"
+                 style="width: 100%;background: var(--light);border-radius: .5rem;border: none;outline: none;resize: none;margin-bottom: .5rem;padding: 30px"
+                 type="text">
+          <textarea cols="30" name="comment" placeholder="yorum yap ..." rows="5"></textarea>
+          <div class="btn-group">
+            {% if user.id is not None %}
+            <button class="btn" style="border: 1.5px solid #ddd;border-radius: 25px;text-align: center;padding: 0.45rem 0.8rem;outline: 0;margin-right: 0.2rem;margin-bottom: 1rem;background: rgb(2, 117, 216);color: white"
+                    type="submit">
+              Göndər
+            </button>
+            <button class="btn"
+                    style="border: 1.5px solid #ddd;border-radius: 25px;text-align: center;padding: 0.45rem 0.8rem;outline: 0;margin-right: 0.2rem;margin-bottom: 1rem;">
+              Iptal
+            </button>
+            {% else %}
+            yorum yapmak icin login olun
+            {% endif %}
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+    <div class="container" style="margin-bottom: 70px">
+      {% for comment in comments %}
+        <div class="comment">
+        <div class="user-info">
+            <img class="user-image" src="{% static 'images/user.jpg' %}" alt="User Image">
+            <div>
+                <div class="user-name">{{ comment.user.username }}</div>
+                <div class="comment-date">{{ comment.create_at }}</div>
+            </div>
+        </div>
+        <div class="stars">
+          {% if comment.rate == 1 %}
+          ★
+          {% else %}
+          {% if comment.rate == 2 %}
+          ★★
+          {% else %}
+          {% if comment.rate == 3 %}
+          ★★★
+          {% else %}
+          {% if comment.rate == 3 %}
+          ★★★★
+          {% else %}
+          {% if comment.rate == 3 %}
+          ★★★★★v
+          {% endif %}
+          {% endif %}
+          {% endif %}
+          {% endif %}
+          {% endif %}
+
+
+
+        </div>
+        <div class="subject">{{ comment }}</div>
+        <div class="comment-textv " style="overflow: hidden;text-overflow: ellipsis">{{ comment.comment }}</div>
+    </div>
+        {% endfor %}
+    </div>
+
+
+    </div>
+
+
+  </body>
+</html>
+<script>
+const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+
+const stars = document.querySelectorAll('.star');
+const permissionCheckbox = document.getElementById('publish');
+const reviewForm = document.getElementById('review-form');
+
+let selectedRating = 0;
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        selectedRating = parseInt(star.getAttribute('data-value'));
+        updateStarRating(selectedRating);
+    });
+});
+
+const allStar = document.querySelectorAll('.rating .star')
+const ratingValue = document.querySelector('.rating input')
+
+allStar.forEach((item, idx)=> {
+	item.addEventListener('click', function () {
+		let click = 0
+		ratingValue.value = idx + 1
+
+		allStar.forEach(i=> {
+			i.classList.replace('bxs-star', 'bx-star')
+			i.classList.remove('active')
+		})
+		for(let i=0; i<allStar.length; i++) {
+			if(i <= idx) {
+				allStar[i].classList.replace('bx-star', 'bxs-star')
+				allStar[i].classList.add('active')
+			} else {
+				allStar[i].style.setProperty('--i', click)
+				click++
+			}
+		}
+	})
+})
+
+
+
+</script>
+
+{% endblock %}
