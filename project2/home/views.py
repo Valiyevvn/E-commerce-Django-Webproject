@@ -12,6 +12,8 @@ import json
 from order.models import ShopCart
 
 
+
+
 # Create your views here.
 def anasayfa(request):
 

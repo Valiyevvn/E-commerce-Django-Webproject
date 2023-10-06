@@ -1,9 +1,20 @@
 version: '3.8'
 services:
+  postgres:
+    image: postgres:latest
+    env_file:
+      - project2/docker.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgresql-data:/var/lib/postgresql/data"
+    command: -p 5432
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - postgres
     env_file:
       - project2/docker.env
     volumes:
@@ -13,5 +24,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
 
 
+
 volumes:
+  postgresql-data:
   static-data:
