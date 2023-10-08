@@ -4,6 +4,7 @@ FROM python:3.10-slim
 RUN apt-get update
 
 RUN apt-get install libpq-dev -y
+RUN apt-get update && apt-get install -y apt-utils && apt-get install -y curl
 RUN apt-get install python3-dev -y
 RUN apt-get install build-essential -y
 RUN apt-get install postgresql-client -y
