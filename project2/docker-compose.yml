@@ -33,9 +33,6 @@ services:
       - app
     ports:
       - 80:80
-      
-
-
 
 volumes:
   postgresql-data:
