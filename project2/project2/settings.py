@@ -155,29 +155,3 @@ CKEDITOR_CONFIGS= {
     }
 }
 
-LOGGING={
-    'version' : 1,
-    'disable_existing_loggers' : False,
-    'formatters' : {
-        'basit_ifade' : {
-            'format' : '{asctime} {levelname} {message} {name}',
-            'style' : '{',
-        }
-    },
-    'handlers' : {
-        'console' : {
-            'class' : 'logging.StreamHandler'
-        },
-        'file' : {
-            'class' : 'logging.FileHandler',
-            'filename' : 'logs/konu_okuma.log',
-            'formatter' : 'basit_ifade',
-        }
-    },
-    'loggers' : {
-        'konu_okuma' : {
-            'handlers' : ['console','file'],
-            'level' : 'INFO'
-        }
-    }
-}
