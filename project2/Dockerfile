@@ -14,7 +14,7 @@ ENV VIRTUAL_ENV=/opt/venv
 
 #pip requirements
 
-RUN pip3 install --upgrade pip3
+RUN pip3 install --upgrade pip
 RUN pip3 install virtualenv && python3 -m virtualenv $VIRTUAL_ENV
 
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
