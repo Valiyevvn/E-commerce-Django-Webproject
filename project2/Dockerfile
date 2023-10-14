@@ -1,7 +1,7 @@
 # pull official base image
 FROM alpine:3.18
 
-
+RUN apt-get update
 
 RUN apt-get install libpq-dev -y
 RUN apt-get install python3-dev build-essential -y
