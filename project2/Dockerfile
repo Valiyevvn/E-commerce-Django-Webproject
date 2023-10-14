@@ -6,14 +6,14 @@ RUN apt-get update
 RUN apt-get install libpq-dev -y
 RUN apt-get install python3-dev build-essential -y
 RUN apt-get install postgresql-client -y
-
+RUN apt install python3 -y
 #set environment variables
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV VIRTUAL_ENV=/opt/venv
 
 #pip requirements
-RUN apt install python -y
+
 RUN pip install --upgrade pip
 RUN pip install virtualenv && python -m virtualenv $VIRTUAL_ENV
 
