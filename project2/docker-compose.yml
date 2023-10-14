@@ -10,8 +10,8 @@ services:
       - "postgresql-data:/var/lib/postgresql/data"
     command: -p 5432
   app:
-    container_name: app_project2
-    hostname: app_project2
+    container_name: app_project
+    hostname: app_project
     build:
       context: .
       dockerfile: Dockerfile
