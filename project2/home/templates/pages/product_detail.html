@@ -443,7 +443,7 @@ textarea {
     </div>
     <div class="product-main container ">
 
-            <h2 class="title">Benzer ürünler</h2>
+            <h2 class="title">Oxşar məhsullar</h2>
 
             <div class="product-grid">
               {% for product in products %}
@@ -454,7 +454,7 @@ textarea {
                   <img src="{{ product.image.url }}" alt="Mens Winter Leathers Jackets" width="170" height="400" class="product-img default">
                   <img src="{{ product.image.url }}" alt="Mens Winter Leathers Jackets" width="170" height="400" class="product-img hover">
 
-                  <p class="showcase-badge">15%</p>
+                  <p class="showcase-badge">0%</p>
 
                   <div class="showcase-actions">
 
@@ -524,7 +524,7 @@ textarea {
         {% endfor %}
         {% endif %}
 
-        <h3>Yorum yap</h3>
+        <h3>Şərh yaz</h3>
         <form action="/product/addcomment/{{ product.id }}" method="post">
           {% csrf_token %}
           <div class="rating">
@@ -535,10 +535,10 @@ textarea {
             <i class='bx bx-star star' style="--i: 3;color: rgb(255,165,52)"></i>
             <i class='bx bx-star star' style="--i: 4;color: rgb(255,165,52)"></i>
           </div>
-          <input name="subject" placeholder="subject"
+          <input name="subject" placeholder="mövzu"
                  style="width: 100%;background: var(--light);border-radius: .5rem;border: none;outline: none;resize: none;margin-bottom: .5rem;padding: 30px"
                  type="text">
-          <textarea cols="30" name="comment" placeholder="yorum yap ..." rows="5"></textarea>
+          <textarea cols="30" name="comment" placeholder="şərh yaz.." rows="5"></textarea>
           <div class="btn-group">
             {% if user.id is not None %}
             <button class="btn" style="border: 1.5px solid #ddd;border-radius: 25px;text-align: center;padding: 0.45rem 0.8rem;outline: 0;margin-right: 0.2rem;margin-bottom: 1rem;background: rgb(2, 117, 216);color: white"
@@ -550,7 +550,7 @@ textarea {
               Iptal
             </button>
             {% else %}
-            yorum yapmak icin login olun
+            <p>Şərh yazmaq üçün giriş etməlisən</p>
             {% endif %}
           </div>
         </form>
