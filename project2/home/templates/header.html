@@ -183,9 +183,8 @@
             <ion-icon name="menu-outline"></ion-icon>
         </button>
 
-        <a href="http://nesreddinvelizade.com/shopcart" class="action-btn">
+        <a href="/shopcart/" class="action-btn">
             <ion-icon name="bag-handle-outline"></ion-icon>
-
             <span class="count">{{ request.session.cart_items }}</span>
         </a>
 
@@ -229,7 +228,7 @@
       <ul class="mobile-menu-category-list">
 
         <li class="menu-category">
-            <br><a href="http://127.0.0.1:8000/" class="menu-title">Home</a>
+            <br><a href="/" class="menu-title">Home</a>
         </li>
         {% load mptt_tags %}
         {% recursetree category %}
