@@ -105,7 +105,7 @@
 
         <div class="container">
 
-            <a class="header-logo" href="http://127.0.0.1:8000/">
+            <a class="header-logo" href="/">
                 <img alt="Anon's logo"  style="height: 60px" src="{{ setting.logo.url }}" >
             </a>
 
@@ -132,7 +132,7 @@
                     <span class="count">0</span>
                 </button>
 
-                <a href="http://127.0.0.1:8000/shopcart" class="action-btn">
+                <a href="http://nesreddinvelizade.com/shopcart" class="action-btn">
                     <ion-icon name="bag-handle-outline"></ion-icon>
                     <span class="count">{{ request.session.cart_items }}</span>
                 </a>
@@ -153,7 +153,7 @@
 
     <div class="mobile-bottom-navigation">
 
-        <a href="http://127.0.0.1:8000/" class="action-btn">
+        <a href="/" class="action-btn">
             <ion-icon name="home-outline"></ion-icon>
         </a>
 
@@ -179,7 +179,7 @@
       <ul class="mobile-menu-category-list">
 
         <li class="menu-category">
-          <a href="{% url 'anasayfa' %}" class="menu-title">Home</a>
+          <a href="/" class="menu-title">Home</a>
         </li>
         {% load mptt_tags %}
         {% recursetree category %}
