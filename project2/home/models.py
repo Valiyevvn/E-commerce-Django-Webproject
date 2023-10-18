@@ -32,7 +32,6 @@ class Settings(models.Model):
     twitter = models.CharField(blank=True,max_length=130)
     instagram = models.CharField(blank=True,max_length=130)
     linkedin = models.CharField(blank=True,max_length=130)
-    linkedin = models.CharField(blank=True,max_length=130)
     aboutus = RichTextUploadingField(blank=True)
     contact = RichTextUploadingField(blank=True)
     references = RichTextUploadingField(blank=True)
