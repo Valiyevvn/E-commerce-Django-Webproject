@@ -5,13 +5,13 @@ from ckeditor.fields import RichTextField
 from django.forms import ModelForm, TextInput,Textarea
 from django.core.validators import validate_email
 from django.utils.safestring import mark_safe
-
+from project2.custom_storages import DocumentStorage,ImageSettingStorage
 
 # Create your models here.
 class Settings(models.Model):
 
     STATUS = (
-        ('True', 'Evet'),
+                ('True', 'Evet'),
         ('False', "Hayir"),
     )
     title=models.CharField(max_length=150)
@@ -26,8 +26,8 @@ class Settings(models.Model):
     smtpemail = models.CharField(max_length=150,blank=True)
     smtppassword = models.CharField(max_length=150,blank=True)
     smtpport = models.CharField(max_length=150,blank=True)
-    icon = models.ImageField(blank=True,upload_to='images/')
-    logo = models.ImageField(blank=True,upload_to='images/')
+    icon = models.ImageField(blank=True,storage=ImageSettingStorage())
+    logo = models.ImageField(blank=True,storage=ImageSettingStorage())
     facebook = models.CharField(blank=True,max_length=130)
     twitter = models.CharField(blank=True,max_length=130)
     instagram = models.CharField(blank=True,max_length=130)
@@ -76,7 +76,7 @@ class UserProfile(models.Model):
     adress=models.CharField(max_length=150)
     city=models.CharField(max_length=20 )
     country=models.CharField(max_length=20 )
-    image = models.ImageField(blank=True, upload_to='images/users/')
+    image = models.ImageField(blank=True, storage=ImageSettingStorage())
 
     def __str__(self):
       return  self.user.username
