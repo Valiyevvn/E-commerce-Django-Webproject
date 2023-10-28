@@ -32,4 +32,3 @@ else:
         location = settings.IMAGE_SETTING_LOCATION
         file_owerwrite = False
         default_acl = 'public-read'
-
