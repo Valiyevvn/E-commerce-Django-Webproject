@@ -38,25 +38,25 @@
             <ul class="header-social-container">
 
                 <li>
-                    <a class="social-link" href="https://www.facebook.com/{{ setting.facebook }}">
+                    <a class="social-link" href="https://www.facebook.com/{{ setting.facebook }}/">
                         <ion-icon name="logo-facebook"></ion-icon>
                     </a>
                 </li>
 
                 <li>
-                    <a class="social-link" href="https://www.twitter.com/{{ setting.twitter}}">
+                    <a class="social-link" href="https://www.twitter.com/{{ setting.twitter}}/">
                         <ion-icon name="logo-twitter"></ion-icon>
                     </a>
                 </li>
 
                 <li>
-                    <a class="social-link" href="https://www.instagram.com/{{ setting.instagram }}">
+                    <a class="social-link" href="https://www.instagram.com/{{ setting.instagram }}/">
                         <ion-icon name="logo-instagram"></ion-icon>
                     </a>
                 </li>
 
                 <li>
-                    <a class="social-link" href="https://www.linkedin.com/{{ setting.linkedin }}">
+                    <a class="social-link" href="https://www.linkedin.com/{{ setting.linkedin }}/">
                         <ion-icon name="logo-linkedin"></ion-icon>
                     </a>
                 </li>
@@ -157,10 +157,10 @@
          {% load mptt_tags %}
           {% recursetree category %}
             <li class="menu-category">
-            <a href="/category/{{ node.id }}/{{node.slug}}" class="menu-title">{{ node.title }}</a>
+            <a href="/category/{{ node.id }}/{{node.slug}}/" class="menu-title">{{ node.title }}</a>
             {% if not node.is_leaf_node %}
             <ul  class="dropdown-list" style="margin-left: 10px;margin-right:10px;padding-left: 10px;">
-                <li><a href="/category/{{ node.id }}/{{node.slug}}"></a>{{ children }}</a></li>
+                <li><a href="/category/{{ node.id }}/{{node.slug}}/"></a>{{ children }}</li>
             </ul>
             {% endif %}
             </li>
@@ -234,7 +234,7 @@
         {% recursetree category %}
         <li class="menu-category">
               <button class="accordion-menu" data-accordion-btn>
-              <br><a href="/category/{{ node.id }}/{{node.slug}}" class="menu-title">{{ node.title }}</a>
+              <br><a href="/category/{{ node.id }}/{{node.slug}}/" class="menu-title">{{ node.title }}</a>
                   <hr>
 
                 <div>
@@ -248,7 +248,7 @@
 
         </li>
             <li class="submenu-category">
-               <a href="/category/{{ node.id }}/{{node.slug}}" data-accordion >{{ children }}</a>
+               <a href="/category/{{ node.id }}/{{node.slug}}/" data-accordion >{{ children }}</a>
             </li>
         </ul>
 
@@ -312,25 +312,25 @@
         <ul class="menu-social-container">
 
           <li>
-            <a href="https://www.facebook.com/{{ setting.facebook }}" class="social-link">
+            <a href="https://www.facebook.com/{{ setting.facebook }}/" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.twitter.com/{{ setting.twitter}}" class="social-link">
+            <a href="https://www.twitter.com/{{ setting.twitter}}/" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.instagram.com/{{ setting.instagram }}" class="social-link">
+            <a href="https://www.instagram.com/{{ setting.instagram }}/" class="social-link">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.linkedin.com/{{ setting.linkedin }}" class="social-link">
+            <a href="https://www.linkedin.com/{{ setting.linkedin }}/" class="social-link">
               <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>

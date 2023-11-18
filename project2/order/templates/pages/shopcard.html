@@ -156,7 +156,7 @@ border-bottom-right-radius: 16px;
             {% if user.id is not None %}
             <div class="header-user-actions">
 
-                <a href="/user" class="action-btn">
+                <a href="/user/" class="action-btn">
                     <ion-icon name="person-outline"></ion-icon>
 
                 </a>
@@ -293,25 +293,25 @@ border-bottom-right-radius: 16px;
         <ul class="menu-social-container">
 
           <li>
-            <a href="https://www.facebook.com/{{ setting.facebook }}" class="social-link">
+            <a href="https://www.facebook.com/{{ setting.facebook }}/" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.twitter.com/{{ setting.twitter}}" class="social-link">
+            <a href="https://www.twitter.com/{{ setting.twitter}}/" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.instagram.com/{{ setting.instagram }}" class="social-link">
+            <a href="https://www.instagram.com/{{ setting.instagram }}/" class="social-link">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
 
           <li>
-            <a href="https://www.linkedin.com/{{ setting.linkedin }}" class="social-link">
+            <a href="https://www.linkedin.com/{{ setting.linkedin }}/" class="social-link">
               <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
@@ -383,7 +383,7 @@ border-bottom-right-radius: 16px;
                       <h6 class="mb-0">{{rs.amount}} ₼ </h6>
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="/order/deletefromcart/{{rs.id}}" onclick="return confirm('Bu məhsulu səbətdən silməyə əminsən?')" class="text-muted"><i class="fas fa-times"></i></a>
+                      <a href="/order/deletefromcart/{{rs.id}}/" onclick="return confirm('Bu məhsulu səbətdən silməyə əminsən?')" class="text-muted"><i class="fas fa-times"></i></a>
                     </div>
                   </div>
 
@@ -395,7 +395,7 @@ border-bottom-right-radius: 16px;
 
 
                   <div class="pt-5">
-                    <h6 class="mb-0"><a href="http://127.0.0.1:8000/" class="text-body"><i
+                    <h6 class="mb-0"><a href="/" class="text-body"><i
                           class="fas fa-long-arrow-alt-left me-2"></i> Alış-verişə dəvam et</a></h6>
                   </div>
                 </div>
@@ -437,7 +437,7 @@ border-bottom-right-radius: 16px;
                     <h5>{{total}} ₼ </h5>
                   </div>
 
-                  <a style="color: white" href="/order/orderproduct" type="button" class="btn btn-dark btn-block btn-lg"
+                  <a style="color: white" href="/order/orderproduct/" type="button" class="btn btn-dark btn-block btn-lg"
                     data-mdb-ripple-color="dark">Ödəniş et</a>
 
                 </div>
