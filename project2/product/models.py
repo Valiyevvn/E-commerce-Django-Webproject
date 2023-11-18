@@ -6,7 +6,7 @@ from django.forms import ModelForm
 
 from django.utils.safestring import mark_safe
 from mptt.models import MPTTModel,TreeForeignKey
-from project2.custom_storages import DocumentStorage,ImageSettingStorage
+
 
 
 class Category(MPTTModel):
@@ -17,7 +17,7 @@ class Category(MPTTModel):
     title=models.CharField(max_length=30)
     keywords=models.CharField(max_length=255)
     description=models.CharField(max_length=255)
-    image=models.ImageField(blank=True,storage=ImageSettingStorage())
+    image = models.ImageField(blank=True, upload_to='images/')
     status=models.CharField(max_length=10,choices=STATUS) #admin paneli ucundur.
 
     slug=AutoSlugField(populate_from='title',unique=True)
@@ -53,7 +53,7 @@ class Product(models.Model):
     title=models.CharField(max_length=70)
     keywords=models.CharField(max_length=255)
     description=models.CharField(max_length=255)
-    image=models.ImageField(blank=True,storage=ImageSettingStorage())
+    image=models.ImageField(blank=True,upload_to='images/')
     price=models.FloatField()
     amount=models.IntegerField()
     detail=RichTextUploadingField()
@@ -77,7 +77,7 @@ class Product(models.Model):
 class Images(models.Model):
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     title = models.CharField(max_length=50,blank=True)
-    image=models.ImageField(blank=True,storage=ImageSettingStorage())
+    image=models.ImageField(blank=True,upload_to='images/')
 
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
