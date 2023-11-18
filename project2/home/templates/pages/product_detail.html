@@ -385,7 +385,7 @@ textarea {
         <!-- card right -->
         <div class="product-content">
           <h5 class="product-title">{{ product.title }}</h5>
-          <a class="product-link" href="/category/{{product.category.id}}/{{product.category.slug}}">{{product.category}}</a>
+          <a class="product-link" href="/category/{{product.category.id}}/{{product.category.slug}}/">{{product.category}}</a>
           <div class="product-rating">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -462,7 +462,7 @@ textarea {
                       <ion-icon name="heart-outline"></ion-icon>
                     </button>
 
-                    <a class="btn-action" href="/product/{{ product.id }}/{{ product.slug }}">
+                    <a class="btn-action" href="/product/{{ product.id }}/{{ product.slug }}/">
                       <ion-icon name="eye-outline"></ion-icon>
                     </a>
 
@@ -470,7 +470,7 @@ textarea {
                       <ion-icon name="repeat-outline"></ion-icon>
                     </button>
 
-                    <a class="btn-action" href="/addtocart/{{ product.id }}">
+                    <a class="btn-action" href="/addtocart/{{ product.id }}/">
                       <ion-icon name="bag-add-outline"></ion-icon>
                     </a>
 
@@ -480,9 +480,9 @@ textarea {
 
                 <div class="showcase-content">
 
-                  <a href="#" class="showcase-category">{{ product.category }}</a>
+                  <a href="#" class="showcase-category">{{ product.category }} </a>
 
-                  <a href="/product/{{ product.id }}/{{ product.slug }}">
+                  <a href="/product/{{ product.id }}/{{ product.slug }}/">
                     <h3 class="showcase-title">{{ product.title }}</h3>
                   </a>
 
