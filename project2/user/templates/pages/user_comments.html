@@ -168,7 +168,7 @@ body {
                     <span class="count">0</span>
                 </button>
 
-                <a href="http://nesreddinvelizade.com/shopcart" class="action-btn">
+                <a href="http://nesreddinvelizade.com/shopcart/" class="action-btn">
                     <ion-icon name="bag-handle-outline"></ion-icon>
                     <span class="count">{{ request.session.cart_items }}</span>
                 </a>
@@ -231,7 +231,7 @@ body {
           </button>
           <ul class="submenu-category-list" data-accordion>
             <li class="submenu-category">
-              <a href="/category/{{ node.id }}/{{node.slug}}" class="submenu-title">{{ children }}</a>
+              <a href="/category/{{ node.id }}/{{node.slug}}/" class="submenu-title">{{ children }}</a>
             </li>
           </ul>
 
@@ -354,7 +354,7 @@ body {
 						<h4 class="text-center">{{ profile.user_name }} </h4>
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link "  href="/user" role="tab" aria-controls="account" aria-selected="true">
+						<a class="nav-link "  href="/user/" role="tab" aria-controls="account" aria-selected="true">
 							<i class="fa fa-home text-center mr-1"></i>
 							Hesab
 						</a>
@@ -403,7 +403,7 @@ body {
                                     {% for comment in comments %}
                                     <tr>
                                         <td>
-                                            <a href="/product/{{ comment.product.id }}/{{ comment.product.slug }}" t class="fw-bold mb-1 mr-3 overflow-auto text-decoration-none text-dark" ><strong>{{comment.product.title}}</strong></a>
+                                            <a href="/product/{{ comment.product.id }}/{{ comment.product.slug }}/" t class="fw-bold mb-1 mr-3 overflow-auto text-decoration-none text-dark" ><strong>{{comment.product.title}}</strong></a>
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -422,7 +422,7 @@ body {
                                         <td style="overflow: scroll">{{comment.comment}}</td>
                                         <td>{{comment.create_at}}</td>
                                         <td>
-                                            <button onclick="location.href='/user/deletecomment/{{comment.id}}';" class="btn btn-outline-danger btn-sm btn-rounded" type="button">
+                                            <button onclick="location.href='/user/deletecomment/{{comment.id}}/';" class="btn btn-outline-danger btn-sm btn-rounded" type="button">
                                                 Sil
                                             </button>
                                         </td>
