@@ -103,6 +103,7 @@ class Comment(models.Model):
     create_at = models.DateField(auto_now_add=True)
     uptade_at = models.DateField(auto_now=True)
 
+
     def __str__(self):
         return self.subject
 

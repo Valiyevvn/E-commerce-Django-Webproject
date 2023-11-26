@@ -1,8 +1,6 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
-
 from .models import Category,Product,Images,Comment
-
 # Register your models here.
 class ProductImageInline(admin.TabularInline):
     model = Images
@@ -14,7 +12,6 @@ class ProductImageInline(admin.TabularInline):
     #readonly_fields = ('image_tag',)
 
 from django.utils.html import format_html
-
 
 class CategoryAdmin(DraggableMPTTAdmin):
     mptt_indent_field = "title"
